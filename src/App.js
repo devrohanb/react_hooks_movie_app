@@ -10,22 +10,50 @@ const SEARCH_API =
 function App() {
   //TODO: states :
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   //TODO: useEffect hook which is having a empty array as a second parameter to render it only once:
   useEffect(async () => {
-    //TODO: Using FETCH API :
-    fetch(FEATURED_API)
+    getMovies(FEATURED_API);
+  }, []);
+
+  //TODO: Method to get Movie from API endpoint using FETCH API:
+  const getMovies = (API) => {
+    fetch(API)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setMovies(data.results);
       });
-  }, []);
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if (searchTerm) {
+      // Search api call using Fetch :
+      getMovies(SEARCH_API + searchTerm);
+      setSearchTerm("");
+    }
+  };
+
+  const handleOnChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <>
       <header>
-        <input className="search" type="text" placeholder="search.." />
+        <h2>THE MOVIE APP</h2>
+        <form onSubmit={handleOnSubmit}>
+          <input
+            className="search"
+            type="text"
+            placeholder="search.."
+            value={searchTerm}
+            onChange={handleOnChange}
+          />
+        </form>
       </header>
       <div className="movie-container">
         {movies.length > 0 &&
