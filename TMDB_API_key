@@ -1,0 +1,9 @@
+TMDB API key : e08dc74dbbfe0b96ad8d8f7a4699b50b
+
+API URL : 
+https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e08dc74dbbfe0b96ad8d8f7a4699b50b&page=1
+
+Images : https://image.tmdb.org/t/p/w500
+
+Search : 
+https://api.themoviedb.org/3/search/movie?&api_key=e08dc74dbbfe0b96ad8d8f7a4699b50b&query=

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Movie from "./components/Movie";
 
 // TODO: API links :
@@ -17,14 +18,25 @@ function App() {
     getMovies(FEATURED_API);
   }, []);
 
-  //TODO: Method to get Movie from API endpoint using FETCH API:
-  const getMovies = (API) => {
-    fetch(API)
+  //TODO: Method to get Movie data from API endpoint using FETCH API:
+  /* const getMovies = (API) => {
+     fetch(API)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setMovies(data.results);
-      });
+      }); 
+  }; */
+
+  //TODO: Method to get Movie data from API endpoint using Axios library:
+  const getMovies = (API) => {
+    axios
+      .get(API)
+      .then((res) => {
+        console.log(res);
+        setMovies(res.data.results);
+      })
+      .catch((error) => console.error(error));
   };
 
   const handleOnSubmit = (e) => {
